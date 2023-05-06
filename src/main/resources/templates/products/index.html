@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Список товаров</title>
+    <link rel="stylesheet" type="text/css" media="all"
+          th:href="@{/bootstrap/css/bootstrap.css}"
+          href="../../static/bootstrap/css/bootstrap.css"/>
+</head>
+<body>
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div th:if="${productList.isEmpty()}">
+                    <h1 class="h3 text-center"> Список товаров отсутствует </h1>
+                </div>
+                <div th:unless="${productList.isEmpty()}">
+                    <h1 class="h3 text-center"> Список товаров </h1>
+
+                    <table class="table">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Штрих-код</th>
+                            <th scope="col">Название</th>
+                            <th scope="col">Запас на складе</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="product : ${productList}">
+                            <td th:text="${product.getId()}">ID</td>
+                            <td th:text="${product.getBarcode()}">Штрих-код</td>
+                            <td th:text="${product.getName()}">Название</td>
+                            <td th:text="${product.getStock()}">Запас на складе</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script th:src="@{/bootstrap/js/bootstrap.bundle.js}" src="../../static/bootstrap/js/bootstrap.bundle.js"></script>
+</body>
+</html>

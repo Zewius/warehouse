@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Список поставок</title>
+    <link rel="stylesheet" type="text/css" media="all"
+          th:href="@{/bootstrap/css/bootstrap.css}"
+          href="../../static/bootstrap/css/bootstrap.css"/>
+</head>
+<body>
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div th:if="${shipmentList.isEmpty()}">
+                    <h1 class="h3 text-center"> Список поставок отсутствует </h1>
+                </div>
+                <div th:unless="${shipmentList.isEmpty()}">
+                    <h1 class="h3 text-center"> Список поставок </h1>
+
+                    <table class="table">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Тип поставки</th>
+                            <th scope="col">Наименование товара</th>
+                            <th scope="col">Наименование контрагента</th>
+                            <th scope="col">Количество товара</th>
+                            <th scope="col">Дата начала поставки</th>
+                            <th scope="col">Дата окончания поставки</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="shipment : ${shipmentList}">
+                            <td th:text="${shipment.getId()}">ID</td>
+                            <td th:text="${shipment.getShipmentType().title}">Тип поставки</td>
+                            <td th:text="${shipment.getProduct().getName()}">Наименование товара</td>
+                            <td th:text="${shipment.getCounterparty().getName()}">Наименование контрагента</td>
+                            <td th:text="${shipment.getCount()}">Количество товара</td>
+                            <td th:text="${shipment.getShipmentStart()}">Дата начала поставки</td>
+                            <td th:text="${shipment.getShipmentEnd()}">Дата окончания поставки</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script th:src="@{/bootstrap/js/bootstrap.bundle.js}" src="../../static/bootstrap/js/bootstrap.bundle.js"></script>
+</body>
+</html>

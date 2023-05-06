@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Список контрагентов</title>
+    <link rel="stylesheet" type="text/css" media="all"
+          th:href="@{/bootstrap/css/bootstrap.css}"
+          href="../../static/bootstrap/css/bootstrap.css"/>
+</head>
+<body>
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div th:if="${counterpartyList.isEmpty()}">
+                    <h1 class="h3 text-center"> Список контрагентов отсутствует </h1>
+                </div>
+                <div th:unless="${counterpartyList.isEmpty()}">
+                    <h1 class="h3 text-center"> Список контрагентов </h1>
+
+                    <table class="table">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Наименование контрагента</th>
+                            <th scope="col">Адрес</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="counterparty : ${counterpartyList}">
+                            <td th:text="${counterparty.getId()}">ID</td>
+                            <td th:text="${counterparty.getName()}">Наименование контрагента</td>
+                            <td th:text="${counterparty.getAddress()}">Адрес</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script th:src="@{/bootstrap/js/bootstrap.bundle.js}" src="../../static/bootstrap/js/bootstrap.bundle.js"></script>
+</body>
+</html>
