@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Таблица товаров</title>
+    <title>Добавление товара</title>
     <link rel="stylesheet" type="text/css" media="all"
           th:href="@{/bootstrap/css/bootstrap.css}"
           href="../../static/bootstrap/css/bootstrap.css"/>
@@ -58,35 +58,51 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <h1 class="h1 text-center mt-5"> Таблица товаров </h1>
+                <h1 class="h1 text-center mt-5"> Регистрация поставки </h1>
 
                 <div class="text-center mt-5">
-                    <a class="btn btn-primary" th:href="@{products/add}" role="button">Добавить товар</a>
+                    <a class="btn btn-primary" th:href="@{shipments}" role="button">Назад</a>
                 </div>
 
-                <div class="mt-5" th:if="${productList.isEmpty()}">
-                    <h2 class="h3 text-center"> Таблица товаров отсутствует </h2>
-                </div>
-                <div class="mt-5" th:unless="${productList.isEmpty()}">
-                    <table class="table">
-                        <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Штрих-код</th>
-                            <th scope="col">Название</th>
-                            <th scope="col">Запас на складе</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each="product : ${productList}">
-                            <td th:text="${product.getId()}">ID</td>
-                            <td th:text="${product.getBarcode()}">Штрих-код</td>
-                            <td th:text="${product.getName()}">Название</td>
-                            <td th:text="${product.getStock()}">Запас на складе</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <form th:object="${shipment}" method="post">
+                    <div class="form-group">
+                        <label for="shipment-type">Тип поставки</label>
+                        <select class="form-select" th:field="*{shipmentType}" id="shipment-type">
+                            <option th:each="selectedShipmentType : ${T(ru.penzin.app.warehouse.entity.ShipmentType).values()}"
+                                    th:value="${selectedShipmentType}" th:text="${selectedShipmentType.title}"></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="counterparty">Контрагент</label>
+                        <select name="counterparty" class="form-select" id="counterparty">
+                            <option th:each="selectedCounterparty : ${counterparts}"
+                                    th:value="${selectedCounterparty.id}"
+                                    th:text="${selectedCounterparty.name}"></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="product">Товар</label>
+                        <select name="product" class="form-select" id="product">
+                            <option th:each="selectedProduct : ${products}"
+                                    th:value="${selectedProduct.id}"
+                                    th:text="${selectedProduct.name}"></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="count">Количество товара в поставке</label>
+                        <input class="form-control" th:field="*{count}" type="number" id="count"
+                               placeholder="Укажите количество товара в поставке">
+                    </div>
+                    <div class="form-group">
+                        <label for="shipment-start">Дата начала поставки</label>
+                        <input class="form-control" th:field="*{shipmentStart}" type="datetime-local" id="shipment-start"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="shipment-end">Дата окончания поставки</label>
+                        <input class="form-control" th:field="*{shipmentEnd}" type="datetime-local" id="shipment-end"/>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Зарегистрировать</button>
+                </form>
             </div>
         </div>
     </div>

@@ -5,22 +5,69 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Список контрагентов</title>
+    <title>Таблица контрагентов</title>
     <link rel="stylesheet" type="text/css" media="all"
           th:href="@{/bootstrap/css/bootstrap.css}"
           href="../../static/bootstrap/css/bootstrap.css"/>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{~/shipments}">Оптовый склад</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" th:href="@{~/shipments}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Поставки
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" th:href="@{~/shipments}"> Таблица поставок </a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" th:href="@{~/shipments/add}"> Зарегистрировать поставку </a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" th:href="@{~/products}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Товары
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" th:href="@{~/products}"> Таблица товаров </a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" th:href="@{~/products/add}"> Добавить новый товар </a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" th:href="@{~/counterparts}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Контрагенты
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" th:href="@{~/counterparts}"> Таблица контрагентов </a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" th:href="@{~/counterparts/add}"> Добавить нового контрагента </a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
 <main>
     <div class="container">
         <div class="row">
             <div class="col">
-                <div th:if="${counterpartyList.isEmpty()}">
-                    <h1 class="h3 text-center"> Список контрагентов отсутствует </h1>
-                </div>
-                <div th:unless="${counterpartyList.isEmpty()}">
-                    <h1 class="h3 text-center"> Список контрагентов </h1>
+                <h1 class="h1 text-center mt-5"> Таблица контрагентов </h1>
 
+                <div class="text-center mt-5">
+                    <a class="btn btn-primary" th:href="@{counterparts/add}" role="button">Добавить контрагента</a>
+                </div>
+
+                <div class="mt-5" th:if="${counterpartyList.isEmpty()}">
+                    <h2 class="h3 text-center"> Таблица контрагентов отсутствует </h2>
+                </div>
+                <div class="mt-5" th:unless="${counterpartyList.isEmpty()}">
                     <table class="table">
                         <thead class="thead-dark">
                         <tr>

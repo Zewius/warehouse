@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Таблица товаров</title>
+    <title>Добавление товара</title>
     <link rel="stylesheet" type="text/css" media="all"
           th:href="@{/bootstrap/css/bootstrap.css}"
           href="../../static/bootstrap/css/bootstrap.css"/>
@@ -58,35 +58,27 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <h1 class="h1 text-center mt-5"> Таблица товаров </h1>
+                <h1 class="h1 text-center mt-5"> Добавление товара </h1>
 
                 <div class="text-center mt-5">
-                    <a class="btn btn-primary" th:href="@{products/add}" role="button">Добавить товар</a>
+                    <a class="btn btn-primary" th:href="@{products}" role="button">Назад</a>
                 </div>
 
-                <div class="mt-5" th:if="${productList.isEmpty()}">
-                    <h2 class="h3 text-center"> Таблица товаров отсутствует </h2>
-                </div>
-                <div class="mt-5" th:unless="${productList.isEmpty()}">
-                    <table class="table">
-                        <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Штрих-код</th>
-                            <th scope="col">Название</th>
-                            <th scope="col">Запас на складе</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each="product : ${productList}">
-                            <td th:text="${product.getId()}">ID</td>
-                            <td th:text="${product.getBarcode()}">Штрих-код</td>
-                            <td th:text="${product.getName()}">Название</td>
-                            <td th:text="${product.getStock()}">Запас на складе</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <form th:object="${product}" method="post">
+                    <div class="form-group">
+                        <label for="name">Наименование товара</label>
+                        <input th:field="*{name}" type="text" class="form-control" id="name" placeholder="Введите наименование товара">
+                    </div>
+                    <div class="form-group">
+                        <label for="barcode">Штрих-код</label>
+                        <input th:field="*{barcode}" type="text" class="form-control" id="barcode" placeholder="Введите номер товара из штрих-кода">
+                    </div>
+                    <div class="form-group">
+                        <label for="stock">Запас</label>
+                        <input th:field="*{stock}" type="number" class="form-control" id="stock" placeholder="Укажите запас товара на складе">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Добавить</button>
+                </form>
             </div>
         </div>
     </div>

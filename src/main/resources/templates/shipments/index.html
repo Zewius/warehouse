@@ -5,22 +5,69 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Список поставок</title>
+    <title>Таблица поставок</title>
     <link rel="stylesheet" type="text/css" media="all"
           th:href="@{/bootstrap/css/bootstrap.css}"
           href="../../static/bootstrap/css/bootstrap.css"/>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{~/shipments}">Оптовый склад</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" th:href="@{~/shipments}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Поставки
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" th:href="@{~/shipments}"> Таблица поставок </a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" th:href="@{~/shipments/add}"> Зарегистрировать поставку </a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" th:href="@{~/products}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Товары
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" th:href="@{~/products}"> Таблица товаров </a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" th:href="@{~/products/add}"> Добавить новый товар </a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" th:href="@{~/counterparts}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Контрагенты
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" th:href="@{~/counterparts}"> Таблица контрагентов </a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" th:href="@{~/counterparts/add}"> Добавить нового контрагента </a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
 <main>
     <div class="container">
         <div class="row">
             <div class="col">
-                <div th:if="${shipmentList.isEmpty()}">
-                    <h1 class="h3 text-center"> Список поставок отсутствует </h1>
-                </div>
-                <div th:unless="${shipmentList.isEmpty()}">
-                    <h1 class="h3 text-center"> Список поставок </h1>
+                <h1 class="h1 text-center mt-5"> Таблица поставок </h1>
 
+                <div class="text-center mt-5">
+                    <a class="btn btn-primary" th:href="@{shipments/add}" role="button">Зарегистрировать поставку</a>
+                </div>
+
+                <div class="mt-5" th:if="${shipmentList.isEmpty()}">
+                    <h2 class="h3 text-center"> Таблица поставок отсутствует </h2>
+                </div>
+                <div class="mt-5" th:unless="${shipmentList.isEmpty()}">
                     <table class="table">
                         <thead class="thead-dark">
                         <tr>
@@ -40,8 +87,8 @@
                             <td th:text="${shipment.getProduct().getName()}">Наименование товара</td>
                             <td th:text="${shipment.getCounterparty().getName()}">Наименование контрагента</td>
                             <td th:text="${shipment.getCount()}">Количество товара</td>
-                            <td th:text="${shipment.getShipmentStart()}">Дата начала поставки</td>
-                            <td th:text="${shipment.getShipmentEnd()}">Дата окончания поставки</td>
+                            <td th:text="${#temporals.format(shipment.getShipmentStart(), 'dd.MM.yyyy HH:mm')}">Дата начала поставки</td>
+                            <td th:text="${#temporals.format(shipment.getShipmentEnd(), 'dd.MM.yyyy HH:mm')}">Дата окончания поставки</td>
                         </tr>
                         </tbody>
                     </table>
