@@ -61,18 +61,18 @@
                 <h1 class="h1 text-center mt-5"> Регистрация поставки </h1>
 
                 <div class="text-center mt-5">
-                    <a class="btn btn-primary" th:href="@{shipments}" role="button">Назад</a>
+                    <a class="btn btn-primary" th:href="@{~/shipments}" role="button">Назад</a>
                 </div>
 
                 <form th:object="${shipment}" method="post">
-                    <div class="form-group">
+                    <div class="form-group mt-5">
                         <label for="shipment-type">Тип поставки</label>
                         <select class="form-select" th:field="*{shipmentType}" id="shipment-type">
                             <option th:each="selectedShipmentType : ${T(ru.penzin.app.warehouse.entity.ShipmentType).values()}"
                                     th:value="${selectedShipmentType}" th:text="${selectedShipmentType.title}"></option>
                         </select>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mt-3">
                         <label for="counterparty">Контрагент</label>
                         <select name="counterparty" class="form-select" id="counterparty">
                             <option th:each="selectedCounterparty : ${counterparts}"
@@ -80,7 +80,7 @@
                                     th:text="${selectedCounterparty.name}"></option>
                         </select>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mt-3">
                         <label for="product">Товар</label>
                         <select name="product" class="form-select" id="product">
                             <option th:each="selectedProduct : ${products}"
@@ -88,20 +88,22 @@
                                     th:text="${selectedProduct.name}"></option>
                         </select>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mt-3">
                         <label for="count">Количество товара в поставке</label>
-                        <input class="form-control" th:field="*{count}" type="number" id="count"
+                        <input class="form-control" th:field="*{count}" type="number" id="count" min="1"
                                placeholder="Укажите количество товара в поставке">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mt-3">
                         <label for="shipment-start">Дата начала поставки</label>
                         <input class="form-control" th:field="*{shipmentStart}" type="datetime-local" id="shipment-start"/>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mt-3">
                         <label for="shipment-end">Дата окончания поставки</label>
                         <input class="form-control" th:field="*{shipmentEnd}" type="datetime-local" id="shipment-end"/>
                     </div>
-                    <button type="submit" class="btn btn-primary">Зарегистрировать</button>
+                    <div class="text-center mt-3">
+                        <button type="submit" class="btn btn-primary">Зарегистрировать</button>
+                    </div>
                 </form>
             </div>
         </div>

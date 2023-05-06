@@ -21,7 +21,7 @@ public class WarehouseApplication {
         SpringApplication.run(WarehouseApplication.class, args);
     }
 
-    @Bean
+    /*@Bean
     public CommandLineRunner loadInitialData(ProductRepository productRepository,
                                              CounterpartyRepository counterpartyRepository,
                                              ShipmentRepository shipmentRepository) {
@@ -49,6 +49,6 @@ public class WarehouseApplication {
 
             shipmentRepository.save(shipment);
         };
-    }
+    }*/
 
 }

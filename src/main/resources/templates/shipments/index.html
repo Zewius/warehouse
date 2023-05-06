@@ -60,6 +60,10 @@
             <div class="col">
                 <h1 class="h1 text-center mt-5"> Таблица поставок </h1>
 
+                <div class="alert alert-warning text-center m-5" role="alert" th:if="${warn}">
+                    <span th:text="${warn}"></span>
+                </div>
+
                 <div class="text-center mt-5">
                     <a class="btn btn-primary" th:href="@{shipments/add}" role="button">Зарегистрировать поставку</a>
                 </div>
