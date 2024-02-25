@@ -1,4 +1,4 @@
-package ru.penzin.app.warehouse.entity;
+package ru.penzin.app.warehouse.counterparty.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

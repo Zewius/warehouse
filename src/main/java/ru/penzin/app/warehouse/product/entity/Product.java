@@ -1,4 +1,4 @@
-package ru.penzin.app.warehouse.entity;
+package ru.penzin.app.warehouse.product.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -26,6 +26,10 @@ public class Product {
 
     @Column(name = "stock", nullable = false)
     private Integer stock;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "image_id", referencedColumnName = "id")
+    private ProductImage image;
 
     @Override
     public boolean equals(Object o) {

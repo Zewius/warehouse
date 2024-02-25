@@ -1,4 +1,4 @@
-package ru.penzin.app.warehouse.controller;
+package ru.penzin.app.warehouse.counterparty.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ru.penzin.app.warehouse.entity.Counterparty;
-import ru.penzin.app.warehouse.repository.CounterpartyRepository;
+import ru.penzin.app.warehouse.counterparty.entity.Counterparty;
+import ru.penzin.app.warehouse.counterparty.repository.CounterpartyRepository;
 
 @Controller
 @RequestMapping(path = "/counterparts")

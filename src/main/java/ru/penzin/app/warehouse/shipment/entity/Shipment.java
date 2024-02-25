@@ -1,8 +1,10 @@
-package ru.penzin.app.warehouse.entity;
+package ru.penzin.app.warehouse.shipment.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.Hibernate;
+import ru.penzin.app.warehouse.counterparty.entity.Counterparty;
+import ru.penzin.app.warehouse.product.entity.Product;
 
 import java.time.LocalDateTime;
 import java.util.Objects;

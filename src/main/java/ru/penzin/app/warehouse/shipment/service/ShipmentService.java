@@ -1,20 +1,19 @@
-package ru.penzin.app.warehouse.service;
+package ru.penzin.app.warehouse.shipment.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-import ru.penzin.app.warehouse.entity.Counterparty;
-import ru.penzin.app.warehouse.entity.Product;
-import ru.penzin.app.warehouse.entity.Shipment;
-import ru.penzin.app.warehouse.entity.ShipmentType;
-import ru.penzin.app.warehouse.repository.CounterpartyRepository;
-import ru.penzin.app.warehouse.repository.ProductRepository;
-import ru.penzin.app.warehouse.repository.ShipmentRepository;
+import ru.penzin.app.warehouse.counterparty.entity.Counterparty;
+import ru.penzin.app.warehouse.product.entity.Product;
+import ru.penzin.app.warehouse.shipment.entity.Shipment;
+import ru.penzin.app.warehouse.counterparty.repository.CounterpartyRepository;
+import ru.penzin.app.warehouse.product.repository.ProductRepository;
+import ru.penzin.app.warehouse.shipment.repository.ShipmentRepository;
 
 import java.util.List;
 
-import static ru.penzin.app.warehouse.entity.ShipmentType.SALE;
+import static ru.penzin.app.warehouse.shipment.entity.ShipmentType.SALE;
 
 @Service
 public class ShipmentService {

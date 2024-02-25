@@ -1,4 +1,4 @@
-package ru.penzin.app.warehouse.entity;
+package ru.penzin.app.warehouse.shipment.entity;
 
 public enum ShipmentType {
     RECEIPT("Приход"), SALE("Продажа");

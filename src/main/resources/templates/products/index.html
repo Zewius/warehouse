@@ -10,7 +10,7 @@
           th:href="@{/bootstrap/css/bootstrap.css}"
           href="../../static/bootstrap/css/bootstrap.css"/>
 </head>
-<body>
+<body class="bg-light">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" th:href="@{~/shipments}">Оптовый склад</a>
@@ -75,14 +75,23 @@
                             <th scope="col">Штрих-код</th>
                             <th scope="col">Название</th>
                             <th scope="col">Запас на складе</th>
+                            <th scope="col">Изображение</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr th:each="product : ${productList}">
-                            <td th:text="${product.getId()}">ID</td>
-                            <td th:text="${product.getBarcode()}">Штрих-код</td>
-                            <td th:text="${product.getName()}">Название</td>
-                            <td th:text="${product.getStock()}">Запас на складе</td>
+                            <td th:text="${product.id()}">ID</td>
+                            <td th:text="${product.barcode()}">Штрих-код</td>
+                            <td th:text="${product.name()}">Название</td>
+                            <td th:text="${product.stock()}">Запас на складе</td>
+                            <td>
+                                <div th:if="${product.imageId() != null}">
+                                    <img style="width: 200px; height: 200px" src="https://ya.ru" th:attr="src=${'api/products/image/' + product.imageId()}" alt="Изображение товара">
+                                </div>
+                                <div th:unless="${product.imageId() != null}">
+                                    <p> Изображение отсутствует </p>
+                                </div>
+                            </td>
                         </tr>
                         </tbody>
                     </table>

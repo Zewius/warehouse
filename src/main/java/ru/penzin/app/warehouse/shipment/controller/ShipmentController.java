@@ -1,17 +1,12 @@
-package ru.penzin.app.warehouse.controller;
+package ru.penzin.app.warehouse.shipment.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import ru.penzin.app.warehouse.entity.Shipment;
-import ru.penzin.app.warehouse.repository.CounterpartyRepository;
-import ru.penzin.app.warehouse.repository.ProductRepository;
-import ru.penzin.app.warehouse.repository.ShipmentRepository;
-import ru.penzin.app.warehouse.service.ShipmentService;
+import ru.penzin.app.warehouse.shipment.entity.Shipment;
+import ru.penzin.app.warehouse.shipment.service.ShipmentService;
 
 @Controller
 @RequestMapping(path = "/shipments")
