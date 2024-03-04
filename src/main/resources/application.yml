@@ -2,7 +2,9 @@ spring:
   datasource:
 #    url: jdbc:h2:file:./src/main/resources/database/warehouse;AUTO_SERVER=TRUE
 #    url: jdbc:postgresql://localhost:5432/hr_manager
-    url: jdbc:mysql://localhost:3306/warehouse
+
+    # Это не поможет, так как нужно писать кастомный запрос на создание колонки с BIGBLOB
+    url: jdbc:mysql://localhost:3306/warehouse?jdbcCompliantTruncation=false
     username: root
     password:
     driverClassName: com.mysql.jdbc.Driver
